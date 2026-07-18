@@ -45,11 +45,15 @@ document.getElementById("calcular").onclick = function(){
     let dolares = pasoUno / valorBCV;
 
     paso1.innerHTML =
-        pesos.toLocaleString("es-CO")
-        +" ÷ "
-        +valorTasa
-        +" = "
-        +pasoUno.toFixed(2);
+    pesos.toLocaleString("es-CO")
+    +" ÷ "
+    +valorTasa
+    +" = "
+    +pasoUno.toLocaleString("es-VE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })
+    +" Bs";
 
     paso2.innerHTML =
         pasoUno.toFixed(2)
