@@ -1,8 +1,3 @@
-// ===============================
-// VARIEDADES ARNELY
-// Calculadora de Envíos
-// ===============================
-
 const cop = document.getElementById("cop");
 const tasa = document.getElementById("tasa");
 const bcv = document.getElementById("bcv");
@@ -11,43 +6,33 @@ const paso1 = document.getElementById("paso1");
 const paso2 = document.getElementById("paso2");
 const resultadoFinal = document.getElementById("resultadoFinal");
 
-const botonCalcular = document.getElementById("calcular");
+const listaHistorial = document.getElementById("listaHistorial");
 
-// Guardar tasa y BCV
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+// Cargar datos guardados
 window.onload = function () {
 
-    if(localStorage.getItem("tasa")){
-        tasa.value = localStorage.getItem("tasa");
-    }
+    tasa.value = localStorage.getItem("tasa") || "4.50";
+    bcv.value = localStorage.getItem("bcv") || "732.47";
 
-    if(localStorage.getItem("bcv")){
-        bcv.value = localStorage.getItem("bcv");
-    }
-
-};
-
-// Formato de miles
-function formatear(numero){
-
-    return Number(numero).toLocaleString("es-CO");
+    mostrarHistorial();
 
 }
 
-// Calcular
+// =====================
+// CALCULAR
+// =====================
 
-botonCalcular.addEventListener("click", calcular);
+document.getElementById("calcular").onclick = function(){
 
-function calcular(){
+    let pesos = Number(cop.value.replace(/\./g,""));
 
-    let pesos = cop.value.replace(/\./g,"");
+    let valorTasa = parseFloat(tasa.value);
 
-    pesos = Number(pesos);
+    let valorBCV = parseFloat(bcv.value);
 
-    let valorTasa = Number(tasa.value);
-
-    let valorBCV = Number(bcv.value);
-
-    if(pesos<=0){
+    if(isNaN(pesos) || pesos<=0){
 
         alert("Ingrese un valor válido");
 
@@ -55,24 +40,23 @@ function calcular(){
 
     }
 
-    let primerPaso = pesos / valorTasa;
+    let pasoUno = pesos / valorTasa;
 
-    let dolares = primerPaso / valorBCV;
+    let dolares = pasoUno / valorBCV;
 
     paso1.innerHTML =
-        formatear(pesos)
+        pesos.toLocaleString("es-CO")
         +" ÷ "
         +valorTasa
         +" = "
-        +primerPaso.toFixed(2);
+        +pasoUno.toFixed(2);
 
     paso2.innerHTML =
-        primerPaso.toFixed(2)
+        pasoUno.toFixed(2)
         +" ÷ "
         +valorBCV
         +" = "
-        +dolares.toFixed(2)
-        +" USD";
+        +dolares.toFixed(2);
 
     resultadoFinal.innerHTML =
         dolares.toFixed(2)+" USD";
@@ -81,27 +65,39 @@ function calcular(){
 
     localStorage.setItem("bcv",valorBCV);
 
-}// ===============================
+    historial.unshift({
+
+        cop:pesos.toLocaleString("es-CO"),
+
+        resultado:dolares.toFixed(2)+" USD"
+
+    });
+
+    if(historial.length>20){
+
+        historial.pop();
+
+    }
+
+    localStorage.setItem("historial",JSON.stringify(historial));
+
+    mostrarHistorial();
+
+}
+
+// =====================
 // HISTORIAL
-// ===============================
+// =====================
 
-const listaHistorial = document.getElementById("listaHistorial");
-const botonCopiar = document.getElementById("copiar");
-const botonWhatsapp = document.getElementById("whatsapp");
-const botonLimpiar = document.getElementById("limpiar");
+function mostrarHistorial(){
 
-let historial = JSON.parse(localStorage.getItem("historial")) || [];
+    listaHistorial.innerHTML="";
 
-function actualizarHistorial() {
+    historial.forEach(item=>{
 
-    listaHistorial.innerHTML = "";
+        let li=document.createElement("li");
 
-    historial.forEach(item => {
-
-        const li = document.createElement("li");
-
-        li.innerHTML =
-            `${item.cop} COP → ${item.resultado}`;
+        li.innerHTML=item.cop+" COP → "+item.resultado;
 
         listaHistorial.appendChild(li);
 
@@ -109,101 +105,62 @@ function actualizarHistorial() {
 
 }
 
-actualizarHistorial();
-
-// ===============================
-// GUARDAR EN HISTORIAL
-// ===============================
-
-const calcularOriginal = calcular;
-
-calcular = function(){
-
-    calcularOriginal();
-
-    historial.unshift({
-        cop: formatear(cop.value.replace(/\./g,"")),
-        resultado: resultadoFinal.innerText
-    });
-
-    if(historial.length > 20){
-        historial.pop();
-    }
-
-    localStorage.setItem(
-        "historial",
-        JSON.stringify(historial)
-    );
-
-    actualizarHistorial();
-
-};
-
-// ===============================
+// =====================
 // COPIAR
-// ===============================
+// =====================
 
-botonCopiar.addEventListener("click",()=>{
+document.getElementById("copiar").onclick=function(){
 
-    navigator.clipboard.writeText(resultadoFinal.innerText);
+navigator.clipboard.writeText(resultadoFinal.innerText);
 
-    alert("Resultado copiado");
+alert("Resultado copiado");
 
-});
+}
 
-// ===============================
+// =====================
 // WHATSAPP
-// ===============================
+// =====================
 
-botonWhatsapp.addEventListener("click",()=>{
+document.getElementById("whatsapp").onclick=function(){
 
-    const mensaje =
-`Variedades Arnely
+let texto="Resultado: "+resultadoFinal.innerText;
 
-COP: ${cop.value}
+window.open("https://wa.me/?text="+encodeURIComponent(texto));
 
-Tasa: ${tasa.value}
+}
 
-BCV: ${bcv.value}
-
-Resultado: ${resultadoFinal.innerText}`;
-
-    window.open(
-        "https://wa.me/?text="+encodeURIComponent(mensaje),
-        "_blank"
-    );
-
-});
-
-// ===============================
+// =====================
 // LIMPIAR
-// ===============================
+// =====================
 
-botonLimpiar.addEventListener("click",()=>{
+document.getElementById("limpiar").onclick=function(){
 
-    cop.value="";
+cop.value="";
 
-    paso1.innerHTML="";
+paso1.innerHTML="";
 
-    paso2.innerHTML="";
+paso2.innerHTML="";
 
-    resultadoFinal.innerHTML="0 USD";
+resultadoFinal.innerHTML="0 USD";
 
-});
+}
 
-// ===============================
+// =====================
 // FORMATO DE MILES
-// ===============================
+// =====================
 
 cop.addEventListener("input",function(){
 
-    let valor=this.value.replace(/\D/g,"");
+let valor=this.value.replace(/\D/g,"");
 
-    if(valor===""){
-        this.value="";
-        return;
-    }
+if(valor==""){
 
-    this.value=Number(valor).toLocaleString("es-CO");
+this.value="";
+
+return;
+
+}
+
+this.value=Number(valor).toLocaleString("es-CO");
 
 });
