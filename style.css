@@ -80,10 +80,18 @@ button{
 }
 
 #resultadoFinal{
+
     text-align:center;
     margin-top:15px;
-    color:#0B8F3A;
-    font-size:36px;
+    color:#E60000;
+    font-size:48px;
+    font-weight:bold;
+    background:#FFF3F3;
+    border:3px solid #E60000;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 0 10px rgba(230,0,0,.25);
+
 }
 
 .botones{
