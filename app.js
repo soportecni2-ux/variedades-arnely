@@ -1,1 +1,1 @@
-function calc(){let c=+cop.value,t=+tasa.value,b=+bcv.value;let p1=c/t,r=p1/b;out.textContent=`Paso 1: ${p1.toFixed(2)}\nResultado: ${r.toFixed(2)} USD`; }
+const historial=[];function calc(){alert("Base del Paquete 2");}

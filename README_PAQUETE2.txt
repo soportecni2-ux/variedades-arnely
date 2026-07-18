@@ -1,0 +1,1 @@
+Paquete 2: historial, copiar, WhatsApp y formato de miles.
