@@ -5,8 +5,15 @@
 
 // ---------- Funciones ----------
 
-function formato(numero) {
-    return Number(numero).toLocaleString("es-CO");
+function formatearMiles(input) {
+    let valor = input.value.replace(/\./g, "").replace(/\D/g, "");
+
+    if (valor === "") {
+        input.value = "";
+        return;
+    }
+
+    input.value = Number(valor).toLocaleString("es-CO");
 }
 
 function redondearMil(valor) {
@@ -18,7 +25,8 @@ function redondearMil(valor) {
 // Pesos -> Bolívares -> Dólares
 // ======================================
 
-document.getElementById("calcular1").onclick = function () {
+document.getElementById("pesos").addEventListener("input", function () {
+    formatearMiles(this);
 
     const pesos = parseFloat(document.getElementById("pesos").value);
     const tasa = parseFloat(document.getElementById("tasa1").value);
