@@ -1,8 +1,3 @@
-/* ==========================================
-   VARIEDADES ARNELY PRO 2.0
-   style.css
-========================================== */
-
 *{
     margin:0;
     padding:0;
@@ -11,146 +6,105 @@
 }
 
 body{
-    background:#f5f7fa;
-    color:#222;
-}
-
-header{
-    background:#16a34a;
-    color:white;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.15);
-}
-
-.logo h1{
-    font-size:32px;
-    font-weight:bold;
-}
-
-.logo p{
-    margin-top:5px;
-    font-size:18px;
-    opacity:.9;
-}
-
-main{
-    width:100%;
-    max-width:650px;
-    margin:30px auto;
-    padding:15px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.card h2{
-    text-align:center;
-    margin-bottom:25px;
-    color:#16a34a;
-}
-
-.campo{
-    margin-bottom:18px;
-}
-
-.campo label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-}
-
-.campo input{
-    width:100%;
-    padding:14px;
-    font-size:18px;
-    border:2px solid #dcdcdc;
-    border-radius:10px;
-    transition:.3s;
-}
-
-.campo input:focus{
-    outline:none;
-    border-color:#16a34a;
-    box-shadow:0 0 8px rgba(22,163,74,.25);
-}
-
-#btnConvertir{
-    width:100%;
-    margin-top:10px;
-    padding:15px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:#16a34a;
-    color:white;
-    cursor:pointer;
-    transition:.3s;
-    font-weight:bold;
-}
-
-#btnConvertir:hover{
-    background:#15803d;
-}
-
-.resultado{
-    margin-top:30px;
-    background:#f3f4f6;
-    border-radius:12px;
+    background:#f2f2f2;
     padding:20px;
 }
 
-.resultado h3{
+.contenedor{
+    max-width:600px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    color:#0b8a3d;
+}
+
+.calculadora{
+    background:#ffffff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    margin-bottom:30px;
+}
+
+.calculadora h2{
     text-align:center;
     margin-bottom:20px;
-    color:#16a34a;
+    color:#0b8a3d;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:6px;
+    background:#0b8a3d;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#087030;
+}
+
+.resultado{
+    background:#f8f8f8;
+    border:1px solid #ddd;
+    border-radius:6px;
+    padding:15px;
+    margin-top:20px;
 }
 
 .resultado p{
-    display:flex;
-    justify-content:space-between;
-    padding:12px 0;
-    border-bottom:1px solid #ddd;
-    font-size:20px;
-}
-
-.resultado p:last-child{
-    border-bottom:none;
-}
-
-.resultado span{
     font-weight:bold;
-    color:#16a34a;
+    margin-top:10px;
 }
 
-@media(max-width:768px){
+.resultado h3{
+    color:#d60000;
+    margin-bottom:10px;
+    font-size:26px;
+}
 
-    header{
-        padding:20px;
+hr{
+    margin:30px 0;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:10px;
     }
 
-    .logo h1{
-        font-size:26px;
+    .calculadora{
+        padding:15px;
     }
 
-    .card{
-        padding:18px;
-    }
-
-    .campo input{
+    input{
         font-size:16px;
     }
 
-    #btnConvertir{
-        font-size:17px;
-    }
-
-    .resultado p{
-        font-size:18px;
+    button{
+        font-size:15px;
     }
 
 }
