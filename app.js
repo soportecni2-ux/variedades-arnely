@@ -1,15 +1,14 @@
-// =====================================
+// ===============================
 // VARIEDADES ARNELY PRO 2.0
-// app.js
-// FASE 1
-// =====================================
+// Calculadora de Envíos a Venezuela
+// ===============================
 
 const cop = document.getElementById("cop");
 const tasaCop = document.getElementById("tasaCop");
 const tasaBcv = document.getElementById("tasaBcv");
 
-const usd = document.getElementById("usd");
 const bs = document.getElementById("bs");
+const usd = document.getElementById("usd");
 
 const btnConvertir = document.getElementById("btnConvertir");
 
@@ -20,45 +19,31 @@ function formato(numero) {
     });
 }
 
-function convertir() {
+btnConvertir.addEventListener("click", () => {
 
     const pesos = parseFloat(cop.value);
-    const precioDolar = parseFloat(tasaCop.value);
+    const tasa = parseFloat(tasaCop.value);
     const bcv = parseFloat(tasaBcv.value);
 
-    if (isNaN(pesos)) {
-        alert("Ingrese el valor en pesos.");
-        cop.focus();
+    if (isNaN(pesos) || isNaN(tasa) || isNaN(bcv)) {
+        alert("Complete todos los campos.");
         return;
     }
 
-    if (isNaN(precioDolar) || precioDolar <= 0) {
-        alert("Ingrese una tasa del dólar válida.");
-        tasaCop.focus();
-        return;
-    }
+    // PASO 1
+    // Pesos ÷ Tasa = Bolívares
+    const bolivares = pesos / tasa;
 
-    if (isNaN(bcv) || bcv <= 0) {
-        alert("Ingrese una tasa BCV válida.");
-        tasaBcv.focus();
-        return;
-    }
+    // PASO 2
+    // Bolívares ÷ BCV = Dólares
+    const dolares = bolivares / bcv;
 
-    // Conversión
-    const dolares = pesos / precioDolar;
-    const bolivares = dolares * bcv;
-
-    usd.textContent = "$ " + formato(dolares);
     bs.textContent = formato(bolivares) + " Bs";
-}
+    usd.textContent = "$ " + formato(dolares);
 
-btnConvertir.addEventListener("click", convertir);
+});
 
-// Registrar Service Worker (si existe)
+// Registrar Service Worker
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js")
-            .then(() => console.log("Service Worker registrado"))
-            .catch(err => console.log("Service Worker no registrado:", err));
-    });
+    navigator.serviceWorker.register("./service-worker.js");
 }
