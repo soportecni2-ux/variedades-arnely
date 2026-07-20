@@ -1,132 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<title>Variedades Arnely</title>
 
-    <title>Variedades Arnely Pro 2.0</title>
-
-    <meta name="theme-color" content="#16a34a">
-
-    <link rel="manifest" href="manifest.json">
-
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<header>
+<div class="contenedor">
 
-    <div class="logo">
+<h1>VARIEDADES ARNELY</h1>
 
-        <h1>VARIEDADES ARNELY</h1>
+<!-- ============================= -->
+<!-- CALCULADORA 1 -->
+<!-- ============================= -->
 
-        <p>PRO 2.0</p>
+<div class="calculadora">
 
-    </div>
+<h2>Pesos ➜ Bolívares ➜ Dólares</h2>
 
-</header>
-
-<main>
-
-<section class="card">
-
-<h2>💱 Conversor de Monedas</h2>
-
-<div class="campo">
-
-<label>
-
-Pesos Colombianos
-
-</label>
+<label>Pesos Colombianos</label>
 
 <input
 type="number"
-id="cop"
-placeholder="Ejemplo 100000">
+id="pesos"
+placeholder="Ej: 100000">
 
-</div>
-
-<div class="campo">
-
-<label>
-
-Precio del dólar (COP)
-
-</label>
+<label>Tasa</label>
 
 <input
 type="number"
 step="0.01"
-id="tasaCop"
-placeholder="Ejemplo 5400">
+id="tasa1"
+placeholder="Ej: 5.4">
 
-</div>
-
-<div class="campo">
-
-<label>
-
-BCV (Bs por USD)
-
-</label>
+<label>BCV</label>
 
 <input
 type="number"
 step="0.01"
-id="tasaBcv"
-placeholder="Ejemplo 160">
+id="bcv1"
+placeholder="Ej: 736.93">
 
-</div>
+<button id="calcular1">
 
-<button id="btnConvertir">
-
-CONVERTIR
+CALCULAR
 
 </button>
 
 <div class="resultado">
 
-<h3>Resultado</h3>
+<p>
+
+Bolívares
+
+</p>
+
+<h3 id="resultadoBs">
+
+0
+
+</h3>
 
 <p>
 
-USD
-
-<span id="usd">
-
-0.00
-
-</span>
+Dólares
 
 </p>
+
+<h3 id="resultadoUsd">
+
+0
+
+</h3>
+
+</div>
+
+<button id="copiar1">
+
+COPIAR
+
+</button>
+
+<button id="whatsapp1">
+
+COMPARTIR WHATSAPP
+
+</button>
+
+<button id="limpiar1">
+
+LIMPIAR
+
+</button>
+
+</div>
+
+<hr>
+
+<!-- ============================= -->
+<!-- CALCULADORA 2 -->
+<!-- ============================= -->
+
+<div class="calculadora">
+
+<h2>Dólares ➜ Bolívares ➜ Pesos</h2>
+
+<label>Dólares</label>
+
+<input
+type="number"
+step="0.01"
+id="dolares"
+placeholder="Ej: 10">
+
+<label>BCV</label>
+
+<input
+type="number"
+step="0.01"
+id="bcv2"
+placeholder="Ej: 736.93">
+
+<label>Tasa</label>
+
+<input
+type="number"
+step="0.01"
+id="tasa2"
+placeholder="Ej: 5.4">
+
+<button id="calcular2">
+
+CALCULAR
+
+</button>
+
+<div class="resultado">
 
 <p>
 
 Bolívares
 
-<span id="bs">
+</p>
 
-0.00
+<h3 id="resultadoBs2">
 
-</span>
+0
+
+</h3>
+
+<p>
+
+Pesos Colombianos
 
 </p>
 
+<h3 id="resultadoCop">
+
+0
+
+</h3>
+
 </div>
 
-</section>
+<button id="copiar2">
 
-</main>
+COPIAR
+
+</button>
+
+<button id="whatsapp2">
+
+COMPARTIR WHATSAPP
+
+</button>
+
+<button id="limpiar2">
+
+LIMPIAR
+
+</button>
+
+</div>
+
+</div>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
