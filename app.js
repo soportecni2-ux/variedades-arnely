@@ -1,59 +1,64 @@
-// ================================
+// =====================================
 // VARIEDADES ARNELY PRO 2.0
 // app.js
-// ================================
+// FASE 1
+// =====================================
 
-const inputPesos = document.getElementById("pesos");
-const inputTasa = document.getElementById("tasa");
-const botonConvertir = document.getElementById("convertir");
+const cop = document.getElementById("cop");
+const tasaCop = document.getElementById("tasaCop");
+const tasaBcv = document.getElementById("tasaBcv");
 
-const salidaUSD = document.getElementById("usd");
-const salidaBS = document.getElementById("bs");
+const usd = document.getElementById("usd");
+const bs = document.getElementById("bs");
 
-function formatearNumero(numero) {
+const btnConvertir = document.getElementById("btnConvertir");
+
+function formato(numero) {
     return Number(numero).toLocaleString("es-CO", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
 }
 
-function convertirMoneda() {
+function convertir() {
 
-    const pesos = parseFloat(inputPesos.value);
-    const tasa = parseFloat(inputTasa.value);
+    const pesos = parseFloat(cop.value);
+    const precioDolar = parseFloat(tasaCop.value);
+    const bcv = parseFloat(tasaBcv.value);
 
-    if (isNaN(pesos) || isNaN(tasa) || tasa <= 0) {
-
-        alert("Ingrese un valor y una tasa válida.");
-
+    if (isNaN(pesos)) {
+        alert("Ingrese el valor en pesos.");
+        cop.focus();
         return;
     }
 
-    const dolares = pesos / tasa;
+    if (isNaN(precioDolar) || precioDolar <= 0) {
+        alert("Ingrese una tasa del dólar válida.");
+        tasaCop.focus();
+        return;
+    }
 
-    // BCV = 1 USD = 1 USD
-    const bolivares = dolares;
+    if (isNaN(bcv) || bcv <= 0) {
+        alert("Ingrese una tasa BCV válida.");
+        tasaBcv.focus();
+        return;
+    }
 
-    salidaUSD.textContent = "$ " + formatearNumero(dolares);
+    // Conversión
+    const dolares = pesos / precioDolar;
+    const bolivares = dolares * bcv;
 
-    salidaBS.textContent = formatearNumero(bolivares);
+    usd.textContent = "$ " + formato(dolares);
+    bs.textContent = formato(bolivares) + " Bs";
 }
 
-botonConvertir.addEventListener("click", convertirMoneda);
+btnConvertir.addEventListener("click", convertir);
 
-// Registrar Service Worker
+// Registrar Service Worker (si existe)
 if ("serviceWorker" in navigator) {
-
     window.addEventListener("load", () => {
-
-        navigator.serviceWorker.register("service-worker.js")
-            .then(() => {
-                console.log("Service Worker registrado correctamente.");
-            })
-            .catch(error => {
-                console.log("Error registrando Service Worker:", error);
-            });
-
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => console.log("Service Worker registrado"))
+            .catch(err => console.log("Service Worker no registrado:", err));
     });
-
 }
