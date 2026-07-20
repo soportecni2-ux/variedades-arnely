@@ -1,3 +1,8 @@
+/* ==========================================
+   VARIEDADES ARNELY PRO 2.0
+   style.css
+========================================== */
+
 *{
     margin:0;
     padding:0;
@@ -6,148 +11,146 @@
 }
 
 body{
-    background:#0d1117;
-    color:#ffffff;
+    background:#f5f7fa;
+    color:#222;
 }
 
-.header{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-    padding:20px;
-    background:#161b22;
-    border-bottom:3px solid #00c853;
-}
-
-.logo{
-    width:80px;
-    height:80px;
-    object-fit:contain;
-}
-
-.header h1{
-    color:#00c853;
-    font-size:30px;
-}
-
-.header p{
-    color:#c9d1d9;
-}
-
-.menu{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    padding:20px;
-}
-
-.menu button{
-    background:#21262d;
+header{
+    background:#16a34a;
     color:white;
-    border:none;
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.3s;
-    font-size:16px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
-.menu button:hover{
-    background:#00c853;
-    transform:translateY(-3px);
+.logo h1{
+    font-size:32px;
+    font-weight:bold;
 }
 
-.menu .activo{
-    background:#00c853;
-    color:#fff;
+.logo p{
+    margin-top:5px;
+    font-size:18px;
+    opacity:.9;
 }
 
 main{
-    max-width:900px;
+    width:100%;
+    max-width:650px;
     margin:30px auto;
-    padding:20px;
+    padding:15px;
 }
 
 .card{
-    background:#161b22;
-    padding:25px;
+    background:white;
     border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,.4);
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
 .card h2{
     text-align:center;
-    margin-bottom:20px;
-    color:#00c853;
+    margin-bottom:25px;
+    color:#16a34a;
 }
 
-input{
+.campo{
+    margin-bottom:18px;
+}
+
+.campo label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.campo input{
     width:100%;
+    padding:14px;
+    font-size:18px;
+    border:2px solid #dcdcdc;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.campo input:focus{
+    outline:none;
+    border-color:#16a34a;
+    box-shadow:0 0 8px rgba(22,163,74,.25);
+}
+
+#btnConvertir{
+    width:100%;
+    margin-top:10px;
     padding:15px;
-    margin:10px 0;
+    font-size:18px;
     border:none;
     border-radius:10px;
-    background:#21262d;
+    background:#16a34a;
     color:white;
-    font-size:18px;
-}
-
-input:focus{
-    outline:2px solid #00c853;
-}
-
-#convertir{
-    width:100%;
-    padding:15px;
-    background:#00c853;
-    border:none;
-    border-radius:10px;
-    color:white;
-    font-size:18px;
     cursor:pointer;
     transition:.3s;
-    margin-top:10px;
-}
-
-#convertir:hover{
-    transform:scale(1.02);
-}
-
-#resultado{
-    margin-top:25px;
-    background:#21262d;
-    padding:20px;
-    border-radius:10px;
-}
-
-#resultado p{
-    font-size:20px;
-    margin:12px 0;
-}
-
-#resultado span{
-    color:#00e676;
     font-weight:bold;
+}
+
+#btnConvertir:hover{
+    background:#15803d;
+}
+
+.resultado{
+    margin-top:30px;
+    background:#f3f4f6;
+    border-radius:12px;
+    padding:20px;
+}
+
+.resultado h3{
+    text-align:center;
+    margin-bottom:20px;
+    color:#16a34a;
+}
+
+.resultado p{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #ddd;
+    font-size:20px;
+}
+
+.resultado p:last-child{
+    border-bottom:none;
+}
+
+.resultado span{
+    font-weight:bold;
+    color:#16a34a;
 }
 
 @media(max-width:768px){
 
-.header{
-    flex-direction:column;
-}
+    header{
+        padding:20px;
+    }
 
-.menu{
-    flex-direction:column;
-}
+    .logo h1{
+        font-size:26px;
+    }
 
-.menu button{
-    width:100%;
-}
+    .card{
+        padding:18px;
+    }
 
-.header h1{
-    font-size:24px;
-}
+    .campo input{
+        font-size:16px;
+    }
+
+    #btnConvertir{
+        font-size:17px;
+    }
+
+    .resultado p{
+        font-size:18px;
+    }
 
 }
