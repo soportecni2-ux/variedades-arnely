@@ -1,39 +1,94 @@
 // ======================================
 // VARIEDADES ARNELY
-// Calculadora de Envíos
+// APP.JS
+// PARTE 1
 // ======================================
 
-// ---------- Funciones ----------
+// ---------- FORMATO DE MILES ----------
 
-function formatearMiles(input) {
-    let valor = input.value.replace(/\./g, "").replace(/\D/g, "");
+function formatearMiles(input){
 
-    if (valor === "") {
-        input.value = "";
+    let valor = input.value;
+
+    valor = valor.replace(/\./g,"");
+    valor = valor.replace(/\D/g,"");
+
+    if(valor===""){
+        input.value="";
         return;
     }
 
     input.value = Number(valor).toLocaleString("es-CO");
+
 }
 
-function redondearMil(valor) {
-    return Math.round(valor / 1000) * 1000;
+// ---------- REDONDEAR AL MILLAR ----------
+
+function redondearMil(numero){
+
+    return Math.round(numero/1000)*1000;
+
 }
+
+// ---------- FORMATO DE RESULTADOS ----------
+
+function miles(numero){
+
+    return Number(numero).toLocaleString("es-CO");
+
+}
+
+// ---------- EVENTO PESOS ----------
+
+const txtPesos=document.getElementById("pesos");
+
+txtPesos.addEventListener("input",function(){
+
+    formatearMiles(this);
+
+});
+
+
+// ---------- SINCRONIZAR TASA ----------
+
+document.getElementById("tasa1").addEventListener("input",function(){
+
+    document.getElementById("tasa2").value=this.value;
+
+});
+
+
+// ---------- SINCRONIZAR BCV ----------
+
+document.getElementById("bcv1").addEventListener("input",function(){
+
+    document.getElementById("bcv2").value=this.value;
+
+});
 
 // ======================================
 // CALCULADORA 1
 // Pesos -> Bolívares -> Dólares
 // ======================================
 
-document.getElementById("pesos").addEventListener("input", function () {
-    formatearMiles(this);
+document.getElementById("calcular1").addEventListener("click", function () {
 
-    const pesos = parseFloat(document.getElementById("pesos").value);
+    let pesosTexto = document.getElementById("pesos").value;
+
+    pesosTexto = pesosTexto.replace(/\./g, "");
+
+    const pesos = parseFloat(pesosTexto);
     const tasa = parseFloat(document.getElementById("tasa1").value);
     const bcv = parseFloat(document.getElementById("bcv1").value);
 
-    if (isNaN(pesos) || isNaN(tasa) || isNaN(bcv)) {
-        alert("Complete todos los campos.");
+    if (
+        isNaN(pesos) ||
+        isNaN(tasa) ||
+        isNaN(bcv) ||
+        tasa <= 0 ||
+        bcv <= 0
+    ) {
+        alert("Complete correctamente todos los campos.");
         return;
     }
 
@@ -41,80 +96,32 @@ document.getElementById("pesos").addEventListener("input", function () {
     const dolares = bolivares / bcv;
 
     document.getElementById("resultadoBs").innerHTML =
-        formato(Math.round(bolivares)) + " Bs";
+        miles(Math.round(bolivares)) + " Bs";
 
     document.getElementById("resultadoUsd").innerHTML =
         dolares.toFixed(2) + " USD";
-};
 
-// Copiar resultado 1
-
-document.getElementById("copiar1").onclick = function () {
-
-    const texto =
-`VARIEDADES ARNELY
-
-Pesos: ${document.getElementById("pesos").value}
-
-Tasa: ${document.getElementById("tasa1").value}
-
-BCV: ${document.getElementById("bcv1").value}
-
-Bolívares: ${document.getElementById("resultadoBs").innerText}
-
-Dólares: ${document.getElementById("resultadoUsd").innerText}`;
-
-    navigator.clipboard.writeText(texto);
-
-    alert("Resultado copiado.");
-};
-
-// WhatsApp 1
-
-document.getElementById("whatsapp1").onclick = function () {
-
-    const texto =
-`VARIEDADES ARNELY
-
-Pesos: ${document.getElementById("pesos").value}
-
-Tasa: ${document.getElementById("tasa1").value}
-
-BCV: ${document.getElementById("bcv1").value}
-
-Bolívares: ${document.getElementById("resultadoBs").innerText}
-
-Dólares: ${document.getElementById("resultadoUsd").innerText}`;
-
-    window.open("https://wa.me/?text=" + encodeURIComponent(texto));
-};
-
-// Limpiar 1
-
-document.getElementById("limpiar1").onclick = function () {
-
-    document.getElementById("pesos").value = "";
-    document.getElementById("tasa1").value = "";
-    document.getElementById("bcv1").value = "";
-
-    document.getElementById("resultadoBs").innerHTML = "0";
-    document.getElementById("resultadoUsd").innerHTML = "0";
-
-};
+});
 
 // ======================================
 // CALCULADORA 2
 // Dólares -> Bolívares -> Pesos
 // ======================================
 
-document.getElementById("calcular2").onclick = function () {
+document.getElementById("calcular2").addEventListener("click", function () {
 
     const dolares = parseFloat(document.getElementById("dolares").value);
     const bcv = parseFloat(document.getElementById("bcv2").value);
     const tasa = parseFloat(document.getElementById("tasa2").value);
 
-    if (isNaN(dolares) || isNaN(bcv) || isNaN(tasa)) {
-        alert("Complete todos los campos.");
+    if (
+        isNaN(dolares) ||
+        isNaN(bcv) ||
+        isNaN(tasa) ||
+        bcv <= 0 ||
+        tasa <= 0
+    ) {
+        alert("Complete correctamente todos los campos.");
         return;
     }
 
@@ -122,22 +129,111 @@ document.getElementById("calcular2").onclick = function () {
 
     let pesos = bolivares * tasa;
 
+    // Redondear al millar más cercano
     pesos = redondearMil(pesos);
 
     document.getElementById("resultadoBs2").innerHTML =
-        formato(Math.round(bolivares)) + " Bs";
+        miles(Math.round(bolivares)) + " Bs";
 
     document.getElementById("resultadoCop").innerHTML =
-        formato(pesos) + " COP";
+        miles(pesos) + " COP";
 
-};
+});
 
-// Copiar 2
+// ======================================
+// CALCULADORA 2
+// Dólares -> Bolívares -> Pesos
+// ======================================
 
-document.getElementById("copiar2").onclick = function () {
+document.getElementById("calcular2").addEventListener("click", function () {
 
-    const texto =
-`VARIEDADES ARNELY
+    const dolares = parseFloat(document.getElementById("dolares").value);
+    const bcv = parseFloat(document.getElementById("bcv2").value);
+    const tasa = parseFloat(document.getElementById("tasa2").value);
+
+    if (
+        isNaN(dolares) ||
+        isNaN(bcv) ||
+        isNaN(tasa) ||
+        bcv <= 0 ||
+        tasa <= 0
+    ) {
+        alert("Complete correctamente todos los campos.");
+        return;
+    }
+
+    const bolivares = dolares * bcv;
+    let pesos = bolivares * tasa;
+
+    pesos = redondearMil(pesos);
+
+    document.getElementById("resultadoBs2").innerHTML =
+        miles(Math.round(bolivares)) + " Bs";
+
+    document.getElementById("resultadoCop").innerHTML =
+        miles(pesos) + " COP";
+
+});
+
+
+// ======================================
+// BOTÓN LIMPIAR 1
+// ======================================
+
+document.getElementById("limpiar1").addEventListener("click", function(){
+
+    document.getElementById("pesos").value="";
+    document.getElementById("resultadoBs").innerHTML="0 Bs";
+    document.getElementById("resultadoUsd").innerHTML="0 USD";
+
+});
+
+
+// ======================================
+// BOTÓN LIMPIAR 2
+// ======================================
+
+document.getElementById("limpiar2").addEventListener("click", function(){
+
+    document.getElementById("dolares").value="";
+    document.getElementById("resultadoBs2").innerHTML="0 Bs";
+    document.getElementById("resultadoCop").innerHTML="0 COP";
+
+});
+
+
+// ======================================
+// COPIAR 1
+// ======================================
+
+document.getElementById("copiar1").addEventListener("click", function(){
+
+    const texto=`VARIEDADES ARNELY
+
+Pesos: ${document.getElementById("pesos").value}
+
+Tasa: ${document.getElementById("tasa1").value}
+
+BCV: ${document.getElementById("bcv1").value}
+
+Bolívares: ${document.getElementById("resultadoBs").innerText}
+
+Dólares: ${document.getElementById("resultadoUsd").innerText}`;
+
+    navigator.clipboard.writeText(texto);
+
+    alert("Resultado copiado.");
+
+});
+
+
+// ======================================
+// COPIAR 2
+// ======================================
+
+document.getElementById("copiar2").addEventListener("click", function(){
+
+    const texto=`VARIEDADES ARNELY
 
 Dólares: ${document.getElementById("dolares").value}
 
@@ -153,14 +249,39 @@ Pesos: ${document.getElementById("resultadoCop").innerText}`;
 
     alert("Resultado copiado.");
 
-};
+});
 
-// WhatsApp 2
 
-document.getElementById("whatsapp2").onclick = function () {
+// ======================================
+// WHATSAPP 1
+// ======================================
 
-    const texto =
-`VARIEDADES ARNELY
+document.getElementById("whatsapp1").addEventListener("click", function(){
+
+    const texto=`VARIEDADES ARNELY
+
+Pesos: ${document.getElementById("pesos").value}
+
+Tasa: ${document.getElementById("tasa1").value}
+
+BCV: ${document.getElementById("bcv1").value}
+
+Bolívares: ${document.getElementById("resultadoBs").innerText}
+
+Dólares: ${document.getElementById("resultadoUsd").innerText}`;
+
+    window.open("https://wa.me/?text="+encodeURIComponent(texto));
+
+});
+
+
+// ======================================
+// WHATSAPP 2
+// ======================================
+
+document.getElementById("whatsapp2").addEventListener("click", function(){
+
+    const texto=`VARIEDADES ARNELY
 
 Dólares: ${document.getElementById("dolares").value}
 
@@ -172,19 +293,6 @@ Bolívares: ${document.getElementById("resultadoBs2").innerText}
 
 Pesos: ${document.getElementById("resultadoCop").innerText}`;
 
-    window.open("https://wa.me/?text=" + encodeURIComponent(texto));
+    window.open("https://wa.me/?text="+encodeURIComponent(texto));
 
-};
-
-// Limpiar 2
-
-document.getElementById("limpiar2").onclick = function () {
-
-    document.getElementById("dolares").value = "";
-    document.getElementById("bcv2").value = "";
-    document.getElementById("tasa2").value = "";
-
-    document.getElementById("resultadoBs2").innerHTML = "0";
-    document.getElementById("resultadoCop").innerHTML = "0";
-
-};
+});
