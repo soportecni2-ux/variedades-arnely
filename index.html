@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Variedades Arnely</title>
+<title>VARIEDADES ARNELY</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -13,103 +13,87 @@
 
 <body>
 
-<div class="contenedor">
+<div class="container">
 
 <h1>VARIEDADES ARNELY</h1>
 
-<!-- ============================= -->
+<!-- ========================================= -->
 <!-- CALCULADORA 1 -->
-<!-- ============================= -->
+<!-- ========================================= -->
 
-<div class="calculadora">
+<div class="card">
 
 <h2>Pesos ➜ Bolívares ➜ Dólares</h2>
 
 <label>Pesos Colombianos</label>
 
 <input
-type="number"
+type="text"
 id="pesos"
-  inputmode="numeric"
-placeholder="Ej: 100000">
+placeholder="100.000"
+inputmode="numeric">
 
 <label>Tasa</label>
 
 <input
 type="number"
-step="0.01"
 id="tasa1"
-placeholder="Ej: 5.4">
+step="0.01"
+placeholder="5.4">
 
 <label>BCV</label>
 
 <input
 type="number"
-step="0.01"
 id="bcv1"
-placeholder="Ej: 736.93">
+step="0.01"
+placeholder="736.93">
 
 <button id="calcular1">
-
 CALCULAR
-
 </button>
 
 <div class="resultado">
 
-<p>
-
-Bolívares
-
-</p>
+<p>Bolívares</p>
 
 <h3 id="resultadoBs">
-
-0
-
+0 Bs
 </h3>
 
-<p>
-
-Dólares
-
-</p>
+<p>Dólares</p>
 
 <h3 id="resultadoUsd">
-
-0
-
+0 USD
 </h3>
 
 </div>
 
+<div class="botones">
+
 <button id="copiar1">
-
 COPIAR
-
 </button>
 
 <button id="whatsapp1">
-
-COMPARTIR WHATSAPP
-
+WHATSAPP
 </button>
 
 <button id="limpiar1">
-
 LIMPIAR
-
 </button>
+
+</div>
 
 </div>
 
 <hr>
 
-<!-- ============================= -->
+<!-- ========================================= -->
 <!-- CALCULADORA 2 -->
-<!-- ============================= -->
+<!-- ========================================= -->
 
-<div class="calculadora">
+<div class="card">
 
 <h2>Dólares ➜ Bolívares ➜ Pesos</h2>
 
@@ -117,77 +101,61 @@ LIMPIAR
 
 <input
 type="number"
-step="0.01"
 id="dolares"
-placeholder="Ej: 10">
+step="0.01"
+placeholder="10">
 
 <label>BCV</label>
 
 <input
 type="number"
-step="0.01"
 id="bcv2"
-placeholder="Ej: 736.93">
+step="0.01"
+placeholder="736.93">
 
 <label>Tasa</label>
 
 <input
 type="number"
-step="0.01"
 id="tasa2"
-placeholder="Ej: 5.4">
+step="0.01"
+placeholder="5.4">
 
 <button id="calcular2">
-
 CALCULAR
-
 </button>
 
 <div class="resultado">
 
-<p>
-
-Bolívares
-
-</p>
+<p>Bolívares</p>
 
 <h3 id="resultadoBs2">
-
-0
-
+0 Bs
 </h3>
 
-<p>
-
-Pesos Colombianos
-
-</p>
+<p>Pesos</p>
 
 <h3 id="resultadoCop">
-
-0
-
+0 COP
 </h3>
 
 </div>
 
+<div class="botones">
+
 <button id="copiar2">
-
 COPIAR
-
 </button>
 
 <button id="whatsapp2">
-
-COMPARTIR WHATSAPP
-
+WHATSAPP
 </button>
 
 <button id="limpiar2">
-
 LIMPIAR
-
 </button>
+
+</div>
 
 </div>
 
