@@ -183,6 +183,12 @@ document.getElementById("calcular2").addEventListener("click", function () {
 document.getElementById("limpiar1").addEventListener("click", function(){
 
     document.getElementById("pesos").value="";
+    document.getElementById("tasa1").value="";
+    document.getElementById("bcv1").value="";
+
+    document.getElementById("tasa2").value="";
+    document.getElementById("bcv2").value="";
+
     document.getElementById("resultadoBs").innerHTML="0 Bs";
     document.getElementById("resultadoUsd").innerHTML="0 USD";
 
@@ -196,6 +202,12 @@ document.getElementById("limpiar1").addEventListener("click", function(){
 document.getElementById("limpiar2").addEventListener("click", function(){
 
     document.getElementById("dolares").value="";
+    document.getElementById("tasa1").value="";
+    document.getElementById("bcv1").value="";
+
+    document.getElementById("tasa2").value="";
+    document.getElementById("bcv2").value="";
+
     document.getElementById("resultadoBs2").innerHTML="0 Bs";
     document.getElementById("resultadoCop").innerHTML="0 COP";
 
